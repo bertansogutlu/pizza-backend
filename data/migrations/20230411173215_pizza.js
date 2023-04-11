@@ -46,6 +46,7 @@ exports.up = function(knex) {
   .createTable('order_toppings',t=>{
     t.increments('order_toppings_id')
     t.integer('topping_id').notNullable().unsigned().references('topping_id').inTable('toppings')
+    t.primary('order_toppings_id','topping_id')
   })
 
 };
