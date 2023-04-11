@@ -1,8 +1,8 @@
 const server = require('./api/server')
-port = 7000
+const {PORT} = require('./config/config')
 
 server.get('/', (req, res) => {
     res.send('Hello World!')
   })
 
-server.listen(port,()=> console.log(`Server is listening on ${port}`))
+server.listen(PORT,()=> console.log(`Server is listening on ${PORT}`))
