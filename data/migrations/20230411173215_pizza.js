@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-    
+
   return knex.schema
   .createTable('roles',t=>{
     t.increments('role_id')
@@ -55,5 +55,12 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  
+  return knex.schema
+  .dropTableIfExists('order_toppings')
+  .dropTableIfExists('orders')
+  .dropTableIfExists('toppings')
+  .dropTableIfExists('rating')
+  .dropTableIfExists('pizzas')
+  .dropTableIfExists('users')
+  .dropTableIfExists('roles')
 };
