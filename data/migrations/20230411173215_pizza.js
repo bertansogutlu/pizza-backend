@@ -41,7 +41,7 @@ exports.up = function(knex) {
     t.string('status').notNullable()
     t.decimal('price').notNullable().unsigned()
     t.integer('pizza_id').references('pizza_id').inTable('pizzas').onDelete('NO ACTION').onUpdate('NO ACTION')
-    t.timestamp()
+    t.timestamps('order_details')
   })
   .createTable('order_toppings',t=>{
     t.increments('order_toppings_id')
