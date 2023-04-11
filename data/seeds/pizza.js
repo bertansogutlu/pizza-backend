@@ -17,8 +17,8 @@ exports.seed = async function(knex) {
     {role_id: 2, name: 'user'},
   ]);
   await knex('users').insert([
-    {name: "Defne", surname: 'Atik', password: '$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq'},
-    {name: "Bertan", surname: 'Sogutlu', password: '$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq'},
+    {name: "Defne", surname: 'Atik', password: '$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq', role_id: 2},
+    {name: "Bertan", surname: 'Sogutlu', password: '$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq', role_id: 1},
   ]);
   await knex('pizzas').insert([
     {name: 'Pepperoni', description: 'Hot', price: '150'},
