@@ -22,7 +22,7 @@ exports.up = function(knex) {
     t.text('description').notNullable()
     t.decimal('price').notNullable().unsigned()
   })
-  .createTable('rating',t=>{
+  .createTable('ratings',t=>{
     t.integer('rate').notNullable().unsigned()
     t.integer('user_id').notNullable().unsigned().references('user_id').inTable('users').onDelete('NO ACTION').onUpdate('NO ACTION')
     t.integer('pizza_id').notNullable().unsigned().references('pizza_id').inTable('pizzas').onDelete('CASCADE').onUpdate('CASCADE')
@@ -60,7 +60,7 @@ exports.down = function(knex) {
   .dropTableIfExists('order_toppings')
   .dropTableIfExists('orders')
   .dropTableIfExists('toppings')
-  .dropTableIfExists('rating')
+  .dropTableIfExists('ratings')
   .dropTableIfExists('pizzas')
   .dropTableIfExists('users')
   .dropTableIfExists('roles')

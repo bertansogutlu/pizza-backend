@@ -4,10 +4,41 @@
  */
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
-  await knex('table_name').del()
-  await knex('table_name').insert([
-    {id: 1, colName: 'rowValue1'},
-    {id: 2, colName: 'rowValue2'},
-    {id: 3, colName: 'rowValue3'}
+  await knex('order_toppings').truncate()
+  await knex('orders').truncate()
+  await knex('toppings').truncate()
+  await knex('ratings').truncate()
+  await knex('pizzas').truncate()
+  await knex('users').truncate()
+  await knex('roles').truncate()
+
+  await knex('roles').insert([
+    {role_id: 1, name: 'admin'},
+    {role_id: 2, name: 'user'},
   ]);
+  await knex('users').insert([
+    {name: "Defne", surname: 'Atik', password: '$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq'},
+    {name: "Bertan", surname: 'Sogutlu', password: '$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq'},
+  ]);
+  await knex('pizzas').insert([
+    {name: 'Pepperoni', description: 'Hot', price: '150'},
+    {name: 'Fungi', description: 'Soft', price: '120'},
+  ]);
+  await knex('rating').insert([
+    {rate: 5, user_id: 1, aaa: 2},
+    {rate: 4, user_id: 2, aaa: 1},
+  ]);
+  await knex('toppings').insert([
+    {name: 'Mushroom'},
+    {name: 'Peppers'},
+  ]);
+  await knex('orders').insert([
+    {dough: 'thick', size: 'small', quantity: 1, note: 'Extra hot', status: 'Preparing', price: '150', pizza_id: '1'},
+    {dough: 'thick', size: 'small', quantity: 1, note: 'Extra sauce', status: 'Preparing', price: '120', pizza_id: '2'},
+  ]);
+  await knex('order_toppings').insert([
+    {topping_id: '1'},
+    {topping_id: '2'},
+  ]);
+
 };
