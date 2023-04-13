@@ -1,7 +1,8 @@
 const db = require("../../data/dbConfig");
 
 async function getAll() {
-  return await db("pizzas");
+  return await db("pizzas")
+  .leftJoin("ratings","ratings.pizza_id","pizzas.pizza_id");
 }
 
 async function getById(id) {

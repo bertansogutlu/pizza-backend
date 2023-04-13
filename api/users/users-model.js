@@ -6,7 +6,8 @@ async function getAll() {
 }
 
 async function getById(id) {
-  return await db("users").where("user_id", id).first();
+  return await db("users").where("user_id", id).first()
+  .leftJoin("roles","users.role_id","roles.role_id");
 }
 
 async function create(order) {
