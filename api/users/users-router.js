@@ -1,40 +1,46 @@
 const router = require('express').Router();
+const usersModel = require('./users-model');
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
-        res.status(200).send('Get all')
+        const users = await usersModel.getAll()
+        res.status(200).json(users)
     } catch (error) {
         next(error)
     }
   })
 
-  router.get('/:id', (req, res, next) => {
+  router.get('/:id', async (req, res, next) => {
     try {
-        res.status(200).send('Get by id')
+        const user = await usersModel.getById(req.params.id)
+        res.status(200).json(user)
     } catch (error) {
         next(error)
     }
   })
 
-  router.post('/', (req, res, next) => {
+  router.post('/', async (req, res, next) => {
     try {
-        res.status(201).send('Create')
+        const user = await usersModel.create(req.body)
+        res.status(201).json(user)
     } catch (error) {
         next(error)
     }
   })
 
-  router.put('/', (req, res, next) => {
+  router.put('/:id', async (req, res, next) => {
     try {
-        res.status(200).send('Update')
+        const user = await usersModel.updateById(req.params.id, req.body)
+        res.status(200).json(user)
     } catch (error) {
         next(error)
     }
   })
 
-  router.delete('/', (req, res, next) => {
+  router.delete('/:id', async (req, res, next) => {
     try {
-        res.status(200).send('Delete')
+        const users = await usersModel.deleteById(req.params.id)
+        res.status(200).json(users)
     } catch (error) {
         next(error)
     }

@@ -18,7 +18,7 @@ async function updateById(id, order) {
   return getById(id);
 }
 
-async function deleteById(id, order) {
+async function deleteById(id) {
   return await db("orders").where("order_id", id).delete();
 }
 

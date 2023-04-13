@@ -1,25 +1,25 @@
 const db = require("../../data/dbConfig");
 
 async function getAll() {
-  return await db("toppings");
+  return await db("users");
 }
 
 async function getById(id) {
-  return await db("toppings").where("topping_id", id).first();
+  return await db("users").where("user_id", id).first();
 }
 
 async function create(order) {
-  const [id] = await db("toppings").insert(order);
+  const [id] = await db("users").insert(order);
   return getById(id);
 }
 
 async function updateById(id, order) {
-  await db("toppings").where("topping_id", id).update(order);
+  await db("users").where("user_id", id).update(order);
   return getById(id);
 }
 
 async function deleteById(id) {
-  return await db("toppings").where("topping_id", id).delete();
+  return await db("users").where("user_id", id).delete();
 }
 
 module.exports = {
