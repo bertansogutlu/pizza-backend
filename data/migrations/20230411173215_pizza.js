@@ -24,7 +24,7 @@ exports.up = function(knex) {
   })
   .createTable('ratings',t=>{
     t.integer('rate').notNullable().unsigned()
-    t.integer('user_id').notNullable().unsigned().references('user_id').inTable('users').onDelete('NO ACTION').onUpdate('NO ACTION')
+    t.integer('user_id').notNullable().unsigned().references('user_id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
     t.integer('pizza_id').notNullable().unsigned().references('pizza_id').inTable('pizzas').onDelete('CASCADE').onUpdate('CASCADE')
     t.primary('user_id','pizza_id')
   })
