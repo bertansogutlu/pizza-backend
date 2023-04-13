@@ -22,7 +22,7 @@ exports.up = function(knex) {
     t.text('description').notNullable()
     t.decimal('price').notNullable().unsigned()
   })
-  .createTable('ratings',t=>{
+  .createTable('rates',t=>{
     t.integer('rate').notNullable().unsigned()
     t.integer('user_id').notNullable().unsigned().references('user_id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
     t.integer('pizza_id').notNullable().unsigned().references('pizza_id').inTable('pizzas').onDelete('CASCADE').onUpdate('CASCADE')
@@ -40,7 +40,7 @@ exports.up = function(knex) {
     t.text('note')
     t.string('status').notNullable()
     t.decimal('price').notNullable().unsigned()
-    t.integer('pizza_id').references('pizza_id').inTable('pizzas').onDelete('NO ACTION').onUpdate('NO ACTION')
+    t.integer('pizza_id').references('pizza_id').inTable('pizzas').onDelete('CASCADE').onUpdate('CASCADE')
   })
   .createTable('order_toppings',t=>{
     t.integer('order_id').notNullable().unsigned().references('order_id').inTable('orders').onDelete('CASCADE').onUpdate('CASCADE')
@@ -59,7 +59,7 @@ exports.down = function(knex) {
   .dropTableIfExists('order_toppings')
   .dropTableIfExists('orders')
   .dropTableIfExists('toppings')
-  .dropTableIfExists('ratings')
+  .dropTableIfExists('rates')
   .dropTableIfExists('pizzas')
   .dropTableIfExists('users')
   .dropTableIfExists('roles')
