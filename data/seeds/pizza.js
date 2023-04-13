@@ -13,28 +13,28 @@ exports.seed = async function(knex) {
   await knex('roles').truncate()
 
   await knex('roles').insert([
-    {role_id: 1, name: 'admin'},
-    {role_id: 2, name: 'user'},
+    {role_id: 1, role: 'admin'},
+    {role_id: 2, role: 'user'},
   ]);
   await knex('users').insert([
-    {name: "Defne", surname: 'Atik', password: '$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq', role_id: 2},
-    {name: "Bertan", surname: 'Sogutlu', password: '$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq', role_id: 1},
+    {username: "Defne", surname: 'Atik', password: '$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq', role_id: 2},
+    {username: "Bertan", surname: 'Sogutlu', password: '$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq', role_id: 1},
   ]);
   await knex('pizzas').insert([
-    {name: 'Pepperoni', description: 'Hot', price: '150'},
-    {name: 'Fungi', description: 'Soft', price: '120'},
+    {pizza: 'Pepperoni', description: 'Hot', price: '150'},
+    {pizza: 'Fungi', description: 'Soft', price: '120'},
   ]);
   await knex('ratings').insert([
     {rate: 5, user_id: 1, pizza_id: 2},
     {rate: 4, user_id: 2, pizza_id: 1},
   ]);
   await knex('toppings').insert([
-    {name: 'Pepperoni'},
-    {name: 'Sausage'},
-    {name: 'Mushrooms'},
-    {name: 'Chicken'},
-    {name: 'Onions'},
-    {name: 'Peppers'},
+    {topping: 'Pepperoni'},
+    {topping: 'Sausage'},
+    {topping: 'Mushrooms'},
+    {topping: 'Chicken'},
+    {topping: 'Onions'},
+    {topping: 'Peppers'},
   ]);
   await knex('orders').insert([
     {dough: 'thick', size: 'small', quantity: 1, note: 'Extra hot', status: 'Preparing', price: '150', pizza_id: 1},

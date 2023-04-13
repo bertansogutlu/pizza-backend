@@ -7,18 +7,18 @@ exports.up = function(knex) {
   return knex.schema
   .createTable('roles',t=>{
     t.increments('role_id')
-    t.string('name').notNullable().unique()
+    t.string('role').notNullable().unique()
   })
   .createTable('users',t=>{
     t.increments('user_id')
-    t.string('name').notNullable()
+    t.string('username').notNullable()
     t.string('surname').notNullable()
     t.string('password').notNullable()
     t.integer('role_id').defaultTo(2).notNullable().unsigned().references('role_id').inTable('roles')
   })
   .createTable('pizzas',t=>{
     t.increments('pizza_id')
-    t.string('name').notNullable()
+    t.string('pizza').notNullable()
     t.text('description').notNullable()
     t.decimal('price').notNullable().unsigned()
   })
@@ -30,7 +30,7 @@ exports.up = function(knex) {
   })
   .createTable('toppings',t=>{
     t.increments('topping_id')
-    t.string('name').notNullable()
+    t.string('topping').notNullable()
   })
   .createTable('orders',t=>{
     t.increments('order_id')
