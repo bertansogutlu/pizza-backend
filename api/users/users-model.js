@@ -10,6 +10,11 @@ async function getById(id) {
   .leftJoin("roles","users.role_id","roles.role_id");
 }
 
+async function getByEmail(email) {
+  return await db("users").where("email", email).first()
+  .leftJoin("roles","users.role_id","roles.role_id");
+}
+
 async function create(order) {
   const [id] = await db("users").insert(order);
   return getById(id);
@@ -27,6 +32,7 @@ async function deleteById(id) {
 module.exports = {
   getAll,
   getById,
+  getByEmail,
   create,
   updateById,
   deleteById,

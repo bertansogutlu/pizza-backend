@@ -13,6 +13,7 @@ exports.up = function(knex) {
     t.increments('user_id')
     t.string('username').notNullable()
     t.string('surname').notNullable()
+    t.string('email').notNullable().unique()
     t.string('password').notNullable()
     t.integer('role_id').defaultTo(2).notNullable().unsigned().references('role_id').inTable('roles')
   })
