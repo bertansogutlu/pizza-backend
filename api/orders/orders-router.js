@@ -1,40 +1,46 @@
 const router = require('express').Router();
+const ordersModel = require('./orders-model');
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
-        res.status(200).send('Get all')
+        const orders = await ordersModel.getAll()
+        res.status(200).json(orders)
     } catch (error) {
         next(error)
     }
   })
 
-  router.get('/:id', (req, res, next) => {
+  router.get('/:id', async (req, res, next) => {
     try {
-        res.status(200).send('Get by id')
+        const order = await ordersModel.getById(req.params.id)
+        res.status(200).json(order)
     } catch (error) {
         next(error)
     }
   })
 
-  router.post('/', (req, res, next) => {
+  router.post('/', async (req, res, next) => {
     try {
-        res.status(201).send('Create')
+        const order = await ordersModel.create(req.body)
+        res.status(201).json(order)
     } catch (error) {
         next(error)
     }
   })
 
-  router.put('/', (req, res, next) => {
+  router.put('/:id', async (req, res, next) => {
     try {
-        res.status(200).send('Update')
+        const order = await ordersModel.updateById(req.params.id, req.body)
+        res.status(200).json(order)
     } catch (error) {
         next(error)
     }
   })
 
-  router.delete('/', (req, res, next) => {
+  router.delete('/:id', async (req, res, next) => {
     try {
-        res.status(200).send('Delete')
+        const order = await ordersModel.deleteById(req.params.id)
+        res.status(200).json(order)
     } catch (error) {
         next(error)
     }

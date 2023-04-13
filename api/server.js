@@ -1,5 +1,6 @@
 const express = require('express');
 const server = express();
+server.use(express.json());
 
 const authRouter = require('./auth/auth-router');
 const ordersRouter = require('./orders/orders-router');
