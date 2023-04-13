@@ -29,13 +29,14 @@ exports.up = function(knex) {
   })
   .createTable('orders',t=>{
     t.increments('order_id')
+    t.integer('user_id').notNullable().references('user_id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
     t.string('dough').notNullable()
     t.string('size').notNullable()
     t.integer('quantity').notNullable()
     t.text('note')
     t.string('status').notNullable()
     t.decimal('price').notNullable().unsigned()
-    t.integer('pizza_id').references('pizza_id').inTable('pizzas').onDelete('CASCADE').onUpdate('CASCADE')
+    t.integer('pizza_id').notNullable().references('pizza_id').inTable('pizzas').onDelete('CASCADE').onUpdate('CASCADE')
   })
   .createTable('order_toppings',t=>{
     t.integer('order_id').notNullable().unsigned().references('order_id').inTable('orders').onDelete('CASCADE').onUpdate('CASCADE')

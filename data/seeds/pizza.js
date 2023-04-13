@@ -32,8 +32,8 @@ exports.seed = async function(knex) {
     {topping: 'Peppers'},
   ]);
   await knex('orders').insert([
-    {dough: 'thick', size: 'small', quantity: 1, note: 'Extra hot', status: 'Preparing', price: '150', pizza_id: 1},
-    {dough: 'thick', size: 'small', quantity: 1, note: 'Extra sauce', status: 'Preparing', price: '120', pizza_id: 2},
+    {user_id: 1, dough: 'thick', size: 'small', quantity: 1, note: 'Extra hot', status: 'Preparing', price: '150', pizza_id: 1},
+    {user_id: 2, dough: 'thick', size: 'small', quantity: 1, note: 'Extra sauce', status: 'Preparing', price: '120', pizza_id: 2},
   ]);
   await knex('order_toppings').insert([
     {order_id: 1, topping_id: 1},
