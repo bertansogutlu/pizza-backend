@@ -19,13 +19,13 @@ async function updateById(id, order) {
 }
 
 async function deleteById(id, order) {
-    return  await db("orders").where("order_id", id).delete();
-  }
+  return await db("orders").where("order_id", id).delete();
+}
 
 module.exports = {
   getAll,
   getById,
   create,
   updateById,
-  deleteById
+  deleteById,
 };
