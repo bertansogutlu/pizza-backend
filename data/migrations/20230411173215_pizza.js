@@ -43,9 +43,9 @@ exports.up = function(knex) {
     t.integer('pizza_id').references('pizza_id').inTable('pizzas').onDelete('NO ACTION').onUpdate('NO ACTION')
   })
   .createTable('order_toppings',t=>{
-    t.increments('order_toppings_id')
+    t.integer('order_id').notNullable().unsigned().references('order_id').inTable('orders').onDelete('CASCADE').onUpdate('CASCADE')
     t.integer('topping_id').notNullable().unsigned().references('topping_id').inTable('toppings')
-    t.primary('order_toppings_id','topping_id')
+    t.primary('order_id','topping_id')
   })
 
 };
