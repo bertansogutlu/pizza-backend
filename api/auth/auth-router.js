@@ -18,10 +18,16 @@ router.post('/register', authMiddleware.validateRegisterPayload, async (req, res
 router.post('/login', authMiddleware.validateLoginPayload, async (req, res, next) => {
   try {
     const user = await userModel.getByEmail(req.body.email)
-    console.log(req.body.password, user.password)
     const validPassword = bcryptjs.compareSync(req.body.password, user.password);
+    const userPayload = {
+      user_id: user.user_id,
+      username: user.username,
+      surname: user.surname,
+      email: user.email,
+      role: user.role
+    }
     if(validPassword){
-      const token = utils.createUserToken(req.body,'8h')
+      const token = utils.createUserToken(userPayload,'8h')
       res.status(200).json({message: `Welcome, ${req.body.username}`, token: token})
     }
     else{
