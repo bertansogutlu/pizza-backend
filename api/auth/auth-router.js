@@ -17,7 +17,9 @@ router.post('/register', authMiddleware.validateRegisterPayload, async (req, res
 router.post('/login', authMiddleware.validateLoginPayload, async (req, res, next) => {
   try {
     const user = await userModel.getByEmail(req.body.email)
-    if(user.password === req.body.password){
+    console.log(req.body.password, user.password)
+    const validPassword = bcryptjs.compareSync(req.body.password, user.password);
+    if(validPassword){
       res.status(200).json(user)
     }
     else{
