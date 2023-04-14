@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const ordersModel = require('./orders-model');
+const {checkRole} = require('../../utils/utils');
 
-router.get('/', async (req, res, next) => {
+router.get('/',checkRole('admin'), async (req, res, next) => {
     try {
         const orders = await ordersModel.getAll()
         res.status(200).json(orders)

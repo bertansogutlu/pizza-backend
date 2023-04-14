@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const usersModel = require('./users-model');
+const {checkRole} = require('../../utils/utils');
 
-router.get('/', async (req, res, next) => {
+router.get('/',checkRole('admin'), async (req, res, next) => {
     try {
         const users = await usersModel.getAll()
         res.status(200).json(users)

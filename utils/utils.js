@@ -11,14 +11,31 @@ const checkUserToken = (req, res, next) => {
       if (token) {
         JWT.verify(token, JWT_SECRET, (err, decodedToken) => {
           if (err) {
-            res.status(401).json({ message: "token geçersizdir" });
+            res.status(401).json({ message: "Token is invalid" });
           } else {
             req.decodedToken = decodedToken;
             next();
           }
         });
       } else {
-        res.status(401).json({ message: "token gereklidir" });
+        res.status(401).json({ message: "Token is required" });
+      }
+    } catch (error) {
+      next(error);
+    }
+}
+
+const checkRole = (role) => (req, res, next) => {
+    try {
+      const userRole = req.decodedToken.role;
+      if (userRole) {
+        if(userRole === role){
+            next()
+        }else{
+            res.status(403).json({ message: "Forbidden" });
+        }
+      } else {
+        res.status(401).json({ message: "Role is required" });
       }
     } catch (error) {
       next(error);
@@ -27,5 +44,6 @@ const checkUserToken = (req, res, next) => {
 
 module.exports = {
     createUserToken,
-    checkUserToken
+    checkUserToken,
+    checkRole
 }
