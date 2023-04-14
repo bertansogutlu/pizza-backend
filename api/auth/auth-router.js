@@ -2,6 +2,7 @@ const router = require('express').Router();
 const userModel = require('../users/users-model');
 const authMiddleware = require('./auth-middleware');
 const bcryptjs = require("bcryptjs");
+const utils = require('../../utils/utils');
 
 
 router.post('/register', authMiddleware.validateRegisterPayload, async (req, res, next) => {
@@ -20,7 +21,8 @@ router.post('/login', authMiddleware.validateLoginPayload, async (req, res, next
     console.log(req.body.password, user.password)
     const validPassword = bcryptjs.compareSync(req.body.password, user.password);
     if(validPassword){
-      res.status(200).json(user)
+      const token = utils.createUserToken(req.body,'8h')
+      res.status(200).json({message: `Welcome, ${req.body.username}`, token: token})
     }
     else{
       res.status(400).json({message: "User not found"})

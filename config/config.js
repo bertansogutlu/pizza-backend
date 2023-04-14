@@ -2,8 +2,12 @@ require('dotenv').config()
 
 PORT = process.env.PORT || 8000
 NODE_ENV = process.env.NODE_ENV
+JWT_SECRET = process.env.JWT_SECRET || "hede"
+
+
 
 module.exports = {
     PORT,
-    NODE_ENV
+    NODE_ENV,
+    JWT_SECRET
 }
