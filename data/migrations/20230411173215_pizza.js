@@ -41,7 +41,6 @@ exports.up = function(knex) {
   .createTable('order_toppings',t=>{
     t.integer('order_id').notNullable().unsigned().references('order_id').inTable('orders').onDelete('CASCADE').onUpdate('CASCADE')
     t.integer('topping_id').notNullable().unsigned().references('topping_id').inTable('toppings')
-    t.primary('order_id','topping_id')
   })
 
 };
