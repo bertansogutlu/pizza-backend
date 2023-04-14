@@ -1,9 +1,12 @@
 const router = require('express').Router();
 const userModel = require('../users/users-model');
-const authMiddleware = require('./auth-middleware')
+const authMiddleware = require('./auth-middleware');
+const bcryptjs = require("bcryptjs");
+
 
 router.post('/register', authMiddleware.validateRegisterPayload, async (req, res, next) => {
     try {
+        req.body.password = bcryptjs.hashSync(req.body.password,8)
         const newUser = await userModel.create(req.body)
         res.status(200).json(newUser)
     } catch (error) {
